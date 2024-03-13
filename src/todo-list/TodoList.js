@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { BsBackspace } from "react-icons/bs";
 import './Todo.css';
+import Todo from '../todo-props/Todo';
 
 
 function TodoList() {
@@ -8,7 +8,7 @@ function TodoList() {
     const [todos, setTodos] = useState([]);
     const [inpValue, setInpValue] = useState('');
 
-    const InputOnchange = (e) => {
+    const InputSubmit = (e) => {
         setInpValue(e.target.value);
     }
 
@@ -33,7 +33,7 @@ function TodoList() {
                         className='inp'
                         type='text'
                         placeholder='write your todo list...'
-                        onChange={InputOnchange}
+                        onChange={InputSubmit}
                     />
                     <button className='send-btn' onClick={submit} >send</button>
                 </form>
@@ -42,13 +42,8 @@ function TodoList() {
             <div >
                 {
                     todos.map((todo) => (
-                        <div className='todos' key={todo}  >
-                            <li>{todo} </li>
 
-                            <BsBackspace className='remove-icon'
-                                onClick={remove} />
-
-                        </div>
+                        <Todo todo={todo} remove={remove} />
                     ))
                 }
             </div>
